@@ -10,37 +10,24 @@ export const TodoFilter: React.FC<TodoFilterProps> = ({
   onFilterChange,
 }) => {
   return (
-    <div className="flex justify-center space-x-4 my-6">
-      <button
-        className={`px-4 py-2 rounded ${
-          currentFilter === "all"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-        }`}
-        onClick={() => onFilterChange("all")}
-      >
-        전체
-      </button>
-      <button
-        className={`px-4 py-2 rounded ${
-          currentFilter === "active"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-        }`}
-        onClick={() => onFilterChange("active")}
-      >
-        진행중
-      </button>
-      <button
-        className={`px-4 py-2 rounded ${
-          currentFilter === "completed"
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 hover:bg-gray-300"
-        }`}
-        onClick={() => onFilterChange("completed")}
-      >
-        완료
-      </button>
+    <div className="flex justify-center gap-2">
+      {[
+        { value: "all", label: "전체" },
+        { value: "active", label: "진행중" },
+        { value: "completed", label: "완료" },
+      ].map((filter) => (
+        <button
+          key={filter.value}
+          className={`px-6 py-2.5 rounded-lg font-medium transition-all duration-200 ${
+            currentFilter === filter.value
+              ? "bg-blue-600 text-white shadow-sm"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+          onClick={() => onFilterChange(filter.value as typeof currentFilter)}
+        >
+          {filter.label}
+        </button>
+      ))}
     </div>
   );
 };

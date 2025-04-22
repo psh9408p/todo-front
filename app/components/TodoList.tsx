@@ -51,20 +51,36 @@ export const TodoList: React.FC = () => {
   });
 
   return (
-    <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">Todo List</h1>
-      <AddTodo onAdd={addTodo} />
-      <TodoFilter currentFilter={filter} onFilterChange={setFilter} />
-      <div className="space-y-4 mt-6">
-        {filteredTodos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onToggle={toggleTodo}
-            onDelete={deleteTodo}
-            onUpdate={updateTodo}
-          />
-        ))}
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-6 space-y-8">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Todo List</h1>
+          <p className="text-gray-600">오늘의 할 일을 관리하세요</p>
+        </div>
+
+        <div className="bg-gray-50 rounded-xl p-6">
+          <AddTodo onAdd={addTodo} />
+        </div>
+
+        <TodoFilter currentFilter={filter} onFilterChange={setFilter} />
+
+        <div className="space-y-4">
+          {filteredTodos.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              할 일이 없습니다. 새로운 할 일을 추가해보세요!
+            </div>
+          ) : (
+            filteredTodos.map((todo) => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                onToggle={toggleTodo}
+                onDelete={deleteTodo}
+                onUpdate={updateTodo}
+              />
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
