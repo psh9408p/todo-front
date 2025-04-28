@@ -187,14 +187,16 @@ export const TodoList: React.FC = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-6 space-y-8">
+    <div className="min-h-screen bg-yellow-50 py-12 px-4 sm:px-6 lg:px-8 font-[BMHANNAPro]">
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-6 space-y-8 border-4 border-black">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Todo List</h1>
-          <p className="text-gray-600">오늘의 할 일을 관리하세요</p>
+          <h1 className="text-4xl font-bold text-black mb-2">할일 리스트</h1>
+          <p className="text-gray-700 font-semibold">
+            오늘의 할 일을 관리하세요
+          </p>
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-6">
+        <div className="bg-yellow-100 rounded-xl p-6 border-2 border-black">
           <AddTodo onAdd={addTodo} />
         </div>
 
@@ -202,14 +204,14 @@ export const TodoList: React.FC = () => {
 
         {isLoading ? (
           <div className="text-center py-8">
-            <p className="text-gray-500">로딩 중...</p>
+            <p className="text-gray-700 font-semibold">로딩 중...</p>
           </div>
         ) : error ? (
-          <div className="text-center py-8 text-red-500">
+          <div className="text-center py-8 text-red-600 font-bold">
             <p>{error}</p>
             <button
               onClick={fetchTodos}
-              className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg"
+              className="mt-2 px-4 py-2 bg-yellow-400 text-black rounded-lg font-bold border-2 border-black hover:bg-yellow-500 transition-colors"
             >
               다시 시도
             </button>
@@ -217,7 +219,7 @@ export const TodoList: React.FC = () => {
         ) : (
           <div className="space-y-4">
             {filteredTodos.length === 0 ? (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-gray-700 font-semibold">
                 할 일이 없습니다. 새로운 할 일을 추가해보세요!
               </div>
             ) : (

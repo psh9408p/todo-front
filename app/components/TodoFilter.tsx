@@ -18,10 +18,10 @@ export const TodoFilter: React.FC<TodoFilterProps> = ({
       ].map((filter) => (
         <button
           key={filter.value}
-          className={`px-6 py-2.5 rounded-lg font-medium transition-all duration-200 ${
+          className={`px-6 py-2.5 rounded-lg font-bold transition-all duration-200 border-2 ${
             currentFilter === filter.value
-              ? "bg-blue-600 text-white shadow-sm"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              ? "bg-yellow-400 text-black border-black shadow-sm"
+              : "bg-white text-black border-black hover:bg-gray-100"
           }`}
           onClick={() => onFilterChange(filter.value as typeof currentFilter)}
         >
