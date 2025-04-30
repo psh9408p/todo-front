@@ -21,26 +21,15 @@ export const TodoList: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 토큰 가져오기 (로그인 구현 후 사용)
-  const getToken = () => {
-    return localStorage.getItem("token") || "";
-  };
-
-  // API 요청 헤더
-  const getHeaders = () => {
-    return {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${getToken()}`,
-    };
-  };
-
   // 할 일 목록 불러오기
   const fetchTodos = async () => {
     setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(`${API_URL}/todos`, {
-        headers: getHeaders(),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (!response.ok) {
@@ -77,7 +66,9 @@ export const TodoList: React.FC = () => {
     try {
       const response = await fetch(`${API_URL}/todos`, {
         method: "POST",
-        headers: getHeaders(),
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ content: text }),
       });
 
@@ -108,7 +99,9 @@ export const TodoList: React.FC = () => {
     try {
       const response = await fetch(`${API_URL}/todos/${id}/toggle`, {
         method: "PATCH",
-        headers: getHeaders(),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (!response.ok) {
@@ -132,7 +125,9 @@ export const TodoList: React.FC = () => {
     try {
       const response = await fetch(`${API_URL}/todos/${id}`, {
         method: "DELETE",
-        headers: getHeaders(),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (!response.ok) {
@@ -161,7 +156,9 @@ export const TodoList: React.FC = () => {
 
       const response = await fetch(`${API_URL}/todos/${id}`, {
         method: "PATCH",
-        headers: getHeaders(),
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(updatedFields),
       });
 
